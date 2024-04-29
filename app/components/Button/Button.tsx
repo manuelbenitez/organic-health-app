@@ -30,7 +30,7 @@ const Button = ({
     white: type === "white",
     orange: type === "orange",
     blue: type === "blue",
-    gold: type === "gold",
+    gold: type === "dark-green",
     black: type === "black",
     whiteSec: type === "white-s",
     orangeSec: type === "orange-s",
@@ -82,6 +82,7 @@ type TButton =
   | "white"
   | "orange"
   | "gold"
+  | "dark-green"
   | "goldBlack"
   | "error"
   | "black"

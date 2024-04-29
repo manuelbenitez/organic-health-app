@@ -3,9 +3,10 @@ import styles from "./Navbar.module.scss";
 import Image from "next/image";
 import Typography from "../Typography/Typography";
 import { RxHamburgerMenu } from "react-icons/rx";
-import logo from "../../../public/assets/iconCoda.svg";
 import { useOutsideAlerter } from "../../hooks/useOutsideAlertes";
-import ProductCard, { IProduct } from "../ProductCard/ProductCard";
+import { IProduct } from "../ProductCard/ProductCard";
+import { FaCannabis } from "react-icons/fa6";
+import ohLogo from "../../../public/assets/oh-logo-white.png";
 import ProductCardSmall from "../ProductCardSmall/ProductCardSmall";
 import { useRouter } from "next/router";
 const Navbar = () => {
@@ -25,9 +26,9 @@ const Navbar = () => {
   };
   return (
     <div className={styles.container}>
-      <Image src={logo} alt={""} className={styles.logo} onClick={() => router.push("/")} />
-      <div className={styles.links}>
-        <Typography text={"ORGANIC HEALTH FARMS"} type={"h1"} />
+      <FaCannabis className={styles.logo} onClick={() => router.push("/")} />
+      <div className={styles.logoContainer}>
+        <Image src={ohLogo} alt="" objectFit="contain" fill />
       </div>
       <RxHamburgerMenu className={styles.menu} onClick={() => setIsMenuOpen(true)} />
 

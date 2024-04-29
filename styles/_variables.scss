@@ -23,7 +23,16 @@ $z-indexes: ("base") !default;
   */
 
   //@TODO - Change black to black-s value, delete black-s and create background-black
-  --black-s: #2a2623;
+  --light-green: #afe4de;
+  --light-green-25: #afe4de4c;
+  --light-green-50: #afe4de83;
+  --light-green-75: #afe4dec8;
+
+  --dark-green: #006e4b;
+  --dark-green-25: #006e4b36;
+  --dark-green-50: #006e4b8d;
+  --dark-green-75: #006e4bc9;
+
   --black: #141312;
   --black-30: #0000004d;
   --black-50: #00000080;
@@ -32,15 +41,16 @@ $z-indexes: ("base") !default;
   /**
     Oranges and golds
   */
-  --mm-orange: #e99922;
-  --mm-orange-30: rgba(233, 153, 34, 0.3);
+  --mm-orange: #feaf53;
+  --mm-orange-30: rgba(233, 153, 34, 0.398)
   --mm-orange-secondary: #ffd89e;
-  --gold: #fbc63e;
-  --gold-25: rgba(251, 198, 62, 0.25);
-  --gold-30: rgba(251, 198, 62, 0.3);
-  --gold-50: rgba(251, 198, 62, 0.5);
-  --gold-hover: #fbc53e78;
-  --gold-selected: #face5d;
+
+  
+  --gold: #ffe39d;
+  --gold-25: #ffe39d5e;
+  --gold-50: #ffe39d84;
+  --gold-hover: #ffe39d84;
+  --gold-selected: rgba(250, 205, 93, 0.709);
 
   /**
     Blues

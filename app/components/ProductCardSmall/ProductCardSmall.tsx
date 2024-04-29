@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ProductCardSmall.module.scss";
-import placeholder from "../../../public/assets/image_placeholder.svg";
+import placeholder from "../../../public/assets/download.jpeg";
 import { IProduct } from "../ProductCard/ProductCard";
 import Image from "next/image";
 import Typography from "../Typography/Typography";
@@ -31,7 +31,7 @@ const ProductCardSmall = ({ product }: IProductCardSmallProps) => {
         <div className={styles.bottom}>
           <div className={styles.group}>
             <CiSquareMinus className={styles.icon} onClick={handleMinimumQuantity} />
-            <Typography text={quantity.toString()} type={"h6"} />
+            <Typography text={quantity.toString()} type={"h6"} color="gold" />
             <CiSquarePlus className={styles.icon} onClick={handleMaximumQuantity} />
           </div>
 

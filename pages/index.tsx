@@ -4,7 +4,7 @@ import Typography from "@/components/Typography/Typography";
 import BasePage from "@/components/BasePage/BasePage";
 import BaseSection from "@/components/BaseSection/BaseSection";
 import ProductCard, { IProduct } from "@/components/ProductCard/ProductCard";
-import placeholder from "../public/assets/image_placeholder.svg";
+import placeholder from "../public/assets/download.jpeg";
 
 export default function Home() {
   const product: IProduct = {

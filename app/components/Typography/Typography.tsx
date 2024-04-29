@@ -201,6 +201,8 @@ export type Colors =
   | "mm-orange"
   | "mm-orange-secondary"
   | "gold"
+  | "dark-green"
+  | "light-green"
   | "blue"
   | "success"
   | "error"
