@@ -13,6 +13,8 @@
   padding: 0 2vw 0 2vw;
   overflow-anchor: none;
 
+  margin-bottom: 100px;
+
   @include respond-to(sm) {
     align-items: unset;
   }

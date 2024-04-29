@@ -45,6 +45,8 @@
 
   background-color: var(--black-30);
 
+  backdrop-filter: blur(10px);
+
   cursor: pointer;
 
   & > h2 {
