@@ -9,11 +9,11 @@ const ProductCard = ({ product }: IProductCardProps) => {
       <div className={styles.imageContainer}>
         <Image src={product.image} alt={""} className={styles.image} fill objectFit="cover" />
       </div>
-      <Typography text={product.name} type={"h4"} />
+      <Typography text={product.name} type={"h4"} color="gold" />
       <Typography text={product.description} type={"body"} />
 
       <div className={styles.price}>
-        <Typography text={"Precio:"} type={"h4"} />
+        <Typography text={"Precio"} type={"h4"} color="white-75" />
         <Typography text={`$${product.price}`} type={"h3"} color="gold" />
       </div>
 

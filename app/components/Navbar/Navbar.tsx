@@ -5,16 +5,27 @@ import Typography from "../Typography/Typography";
 import { RxHamburgerMenu } from "react-icons/rx";
 import logo from "../../../public/assets/iconCoda.svg";
 import { useOutsideAlerter } from "../../hooks/useOutsideAlertes";
+import ProductCard, { IProduct } from "../ProductCard/ProductCard";
+import ProductCardSmall from "../ProductCardSmall/ProductCardSmall";
+import { useRouter } from "next/router";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const router = useRouter();
 
   const ref = useRef(null);
 
   useOutsideAlerter(ref, () => setIsMenuOpen(false));
 
+  const product: IProduct = {
+    name: "Protector Solar",
+    description: "La crema protectora solar más efectiva del mercado.",
+    price: 1000,
+    image: "",
+  };
   return (
     <div className={styles.container}>
-      <Image src={logo} alt={""} className={styles.logo} />
+      <Image src={logo} alt={""} className={styles.logo} onClick={() => router.push("/")} />
       <div className={styles.links}>
         <Typography text={"ORGANIC HEALTH FARMS"} type={"h1"} />
       </div>
@@ -22,9 +33,24 @@ const Navbar = () => {
 
       {isMenuOpen && (
         <div className={styles.openMenu} ref={ref}>
-          <Typography text={"Informacion de Productos"} type={"h2"} />
-          <Typography text={"Blog"} type={"h2"} />
-          <Typography text={"Contacto"} type={"h2"} />
+          <div className={styles.links}>
+            <Typography text={"Informacion de Productos"} type={"h2"} />
+            <Typography text={"Blog"} type={"h2"} />
+            <Typography text={"Contacto"} type={"h2"} />
+          </div>
+          <div className={styles.cart}>
+            <Typography text={"CARRITO DE COMPRAS"} type={"h4"} />
+            <div className={styles.products}>
+              <ProductCardSmall product={product} />
+              <ProductCardSmall product={product} />
+              <ProductCardSmall product={product} />
+              <ProductCardSmall product={product} />
+              <ProductCardSmall product={product} />
+              <ProductCardSmall product={product} />
+              <ProductCardSmall product={product} />
+              <ProductCardSmall product={product} />
+            </div>
+          </div>
         </div>
       )}
     </div>
