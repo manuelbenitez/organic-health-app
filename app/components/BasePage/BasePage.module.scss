@@ -1,0 +1,29 @@
+@use "../../../styles/mixins" as *;
+
+.basePage {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  @include toRem(gap, 60);
+  overflow-anchor: none;
+
+  margin-bottom: 5vh;
+  padding-top: var(--spacing-xl);
+
+  min-height: 100vh;
+
+  @include respond-to(md) {
+    width: 100%;
+    height: auto;
+
+    padding-top: var(--spacing-xxl);
+  }
+}
+
+.noPadding {
+  padding-top: 0;
+}

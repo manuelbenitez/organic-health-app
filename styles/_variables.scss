@@ -1,0 +1,99 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+$z-indexes: ("base") !default;
+
+:root {
+  /**
+  NEW VARIABLIES
+  */
+  --neutral: #484542;
+
+  /**
+    Whites
+  */
+  --white: #ffffff;
+  --white-25: #ffffff12;
+  --white-50: #ffffff80;
+  --white-75: #ffffffbf;
+
+  /**
+    Blacks
+  */
+
+  //@TODO - Change black to black-s value, delete black-s and create background-black
+  --black-s: #2a2623;
+  --black: #141312;
+  --black-30: #0000004d;
+  --black-50: #00000080;
+  --black-70: #000000a7;
+
+  /**
+    Oranges and golds
+  */
+  --mm-orange: #e99922;
+  --mm-orange-30: rgba(233, 153, 34, 0.3);
+  --mm-orange-secondary: #ffd89e;
+  --gold: #fbc63e;
+  --gold-25: rgba(251, 198, 62, 0.25);
+  --gold-30: rgba(251, 198, 62, 0.3);
+  --gold-50: rgba(251, 198, 62, 0.5);
+  --gold-hover: #fbc53e78;
+  --gold-selected: #face5d;
+
+  /**
+    Blues
+  */
+  --blue: #00e0ff;
+  --blue-hover: rgba(0, 225, 255, 0.5);
+  --blue-30: rgb(0, 224, 255, 0.3);
+  --blue-70: #00e1ffb2;
+
+  /**
+    States
+  */
+  --success-30: rgba(101, 181, 100, 0.3);
+  --success: #65b564;
+  --error: #c64c4c;
+  --error-hover: #c64c4c7e;
+  --error-30: rgb(217, 163, 163, 0.3);
+  --error-50: #c64c4c7c;
+  --error-75: var(--black);
+
+  /**
+    Purples
+  */
+  --purple: #b1a3d9;
+  --purple-30: rgb(177, 163, 217, 0.3);
+
+  /**
+    RRCC Background Colors
+  */
+  --airforce-blue: #597a9a;
+  --dusk-blue: #5d6470;
+  --ginger-orange: #c3945a;
+  --grape-purple: #827183;
+  --ice-gray: #b5bcc3;
+  --moss-green: #6d8e6b;
+  --mustard-yellow: #b3a364;
+  --olive-green: #757556;
+  --peppermint-green: #65ac9c;
+  --steel-blue: #66919b;
+  --tea-green: #bcbc93;
+  --wine-red: #986f6f;
+  --bubblegum-pink: #d6a8bd;
+
+  // spacing
+  --spacing-xs: 6px;
+  --spacing-sm: 12px;
+  --spacing-sm-md: 16px;
+  --spacing-md: 20px;
+  --spacing-md-lg: 32px;
+  --spacing-lg: 40px;
+  --spacing-xl: 100px;
+  --spacing-xxl: 150px;
+
+  // radius
+  --border-radius-12: 12px;
+}
