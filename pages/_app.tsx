@@ -1,10 +1,10 @@
 import type { AppProps } from "next/app";
 import React from "react";
 import Head from "next/head";
-// import "../styles/styles.scss";
-// import { appWithTranslation } from "next-i18next";
+import "../styles/styles.scss";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Navbar from "@/components/Navbar/Navbar";
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -26,6 +26,7 @@ function App({ Component, pageProps }: AppProps) {
         theme="dark"
         className={"toast-text"}
       />
+      <Navbar />
       <Component {...pageProps} />
     </React.Fragment>
   );
