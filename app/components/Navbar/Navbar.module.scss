@@ -5,7 +5,6 @@
   top: 0;
   z-index: 1;
 
-
   overflow: visible;
 
   display: flex;
@@ -14,8 +13,9 @@
 
   background-color: var(--dark-green-25);
 
-
   @include toRem(padding, 20);
+  @include toRem(padding-left, 25);
+  @include toRem(padding-right, 25);
 }
 
 .logo {
@@ -57,6 +57,12 @@
   flex-direction: column;
   justify-content: space-between;
 
+  border-left: 2px solid var(--dark-green-50);
+  border-top: 2px solid var(--dark-green-50);
+  border-bottom: 2px solid var(--dark-green-50);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+
   @include toRem(padding-left, 20);
   @include toRem(padding-right, 20);
   @include toRem(padding-top, 120);
@@ -92,12 +98,22 @@
     flex-direction: column;
     gap: 6px;
 
-    max-height: 60vh;
+    max-height: 500px;
 
     overflow-y: scroll;
 
     &::-webkit-scrollbar {
       display: none;
     }
+  }
+
+  .total {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 20px;
   }
 }

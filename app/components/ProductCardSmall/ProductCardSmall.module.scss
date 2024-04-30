@@ -13,12 +13,12 @@
 
   transition: 0.2s ease-in-out;
 
-  border: 1px solid var(--white-25);
+  border: 1px solid var(--dark-green-50);
 
   &:hover {
-    background-color: var(--black-70);
+    background-color: var(--dark-green-50);
 
-    box-shadow: 0px 0px 4px 0.1px var(--white);
+    box-shadow: 0px 0px 4px 0.1px var(--dark-green-25);
     border: 1px solid var(--white-50);
   }
 }

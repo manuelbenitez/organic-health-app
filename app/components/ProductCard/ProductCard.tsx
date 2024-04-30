@@ -43,9 +43,12 @@ interface IProductCardProps {
 }
 
 export interface IProduct {
+  uid: string;
   name: string;
   description: string;
   price: number;
+  quantity: number;
+  stock: number;
   image: string | StaticImageData;
 }
 
