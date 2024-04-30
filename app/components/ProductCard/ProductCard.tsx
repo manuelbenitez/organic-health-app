@@ -9,7 +9,7 @@ const ProductCard = ({ product }: IProductCardProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
-        <Image src={product.image} alt={""} className={styles.image} fill objectFit="cover" />
+        <Image src={product.imageUrl} alt={""} className={styles.image} fill objectFit="cover" />
       </div>
       <Typography text={product.name} type={"h2"} color="gold" />
       <Typography text={product.description} type={"body"} />
@@ -43,13 +43,13 @@ interface IProductCardProps {
 }
 
 export interface IProduct {
-  uid: string;
+  uid?: string;
   name: string;
   description: string;
   price: number;
-  quantity: number;
+  quantity?: number;
   stock: number;
-  image: string | StaticImageData;
+  imageUrl: string | StaticImageData;
 }
 
 export default ProductCard;
