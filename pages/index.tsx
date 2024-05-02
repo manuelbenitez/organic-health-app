@@ -8,13 +8,15 @@ import placeholder from "../public/assets/download.jpeg";
 
 export default function Home() {
   const product: IProduct = {
-    uid: '1',
+    id: "1",
     name: "Protector Solar",
     description: "La crema protectora solar más efectiva del mercado.",
     price: 1000,
-    image: placeholder,
+    imageUrl: placeholder,
     quantity: 0,
     stock: 0,
+    longDescription: "",
+    properties: "FPS 38-40, 50cc",
   };
   return (
     <BasePage backgroundColor={"--black-s"}>
@@ -31,12 +33,12 @@ export default function Home() {
       <BaseSection lightBg>
         <Typography text={"Productos"} type={"h1"} />
         <div className={styles.productGrid}>
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
+          <ProductCard product={product} buttonText={"VER DETALLES"} />
+          <ProductCard product={product} buttonText={"VER DETALLES"} />
+          <ProductCard product={product} buttonText={"VER DETALLES"} />
+          <ProductCard product={product} buttonText={"VER DETALLES"} />
+          <ProductCard product={product} buttonText={"VER DETALLES"} />
+          <ProductCard product={product} buttonText={"VER DETALLES"} />
         </div>
       </BaseSection>
     </BasePage>

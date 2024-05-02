@@ -21,10 +21,37 @@ const Dashboard = () => {
     price: 0,
     stock: 0,
     imageUrl: "",
+    longDescription: "",
+    properties: "",
   });
+  const [productEdited, setProductEdited] = React.useState<IProduct>({
+    name: "",
+    description: "",
+    price: 0,
+    stock: 0,
+    imageUrl: "",
+    longDescription: "",
+    properties: "",
+  });
+
+  const [isEditing, setIsEditing] = React.useState<boolean>(false);
   const [isUploading, setIsUploading] = React.useState<boolean>(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    if (e.target.id === "price" || e.target.id === "stock") {
+      const value = e.target.value;
+      const onlyNumbers = value.replace(/[^0-9]/g, "");
+      setProduct({ ...product, [e.target.id]: onlyNumbers });
+    } else {
+      setProduct({ ...product, [e.target.id]: e.target.value });
+    }
+  };
+
+  const handleEditInputChange = (
+    e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     if (e.target.id === "price" || e.target.id === "stock") {
       const value = e.target.value;
       const onlyNumbers = value.replace(/[^0-9]/g, "");
@@ -45,6 +72,11 @@ const Dashboard = () => {
     }
   };
 
+  const handleEditProduct = (product: IProduct) => {
+    setIsEditing(true);
+    setProductEdited(product);
+  };
+
   const resetProduct = () => {
     setProduct({
       name: "",
@@ -52,6 +84,8 @@ const Dashboard = () => {
       price: 0,
       stock: 0,
       imageUrl: "",
+      longDescription: "",
+      properties: "",
     });
   };
 
@@ -61,6 +95,7 @@ const Dashboard = () => {
       const response = await axios.post("http://localhost:5273/products", product);
 
       toast.success("Producto cargado correctamente");
+      getProducts();
       console.log(response);
     } catch (e) {
       console.log(e);
@@ -74,6 +109,7 @@ const Dashboard = () => {
       const response = await axios.get("http://localhost:5273/products");
 
       console.log(response.data, "get");
+      setAllProducts(response.data);
     } catch (e) {
       console.log(e);
     }
@@ -109,6 +145,21 @@ const Dashboard = () => {
                   id={"description"}
                 />
                 <Input
+                  label={"Descripcion completa del Producto"}
+                  value={product.longDescription}
+                  setValue={handleInputChange}
+                  placeholder={"Ingresar nombre del producto"}
+                  id={"longDescription"}
+                  textArea
+                />
+                <Input
+                  label={"Propiedades del Producto"}
+                  value={product.properties}
+                  setValue={handleInputChange}
+                  placeholder={"Ingresar nombre del producto"}
+                  id={"properties"}
+                />
+                <Input
                   label={"Precio del Producto"}
                   value={product.price}
                   setValue={handleInputChange}
@@ -141,9 +192,83 @@ const Dashboard = () => {
               </div>
             )}
             {selected === 1 && (
-              <div className={styles.form}>
-                <Typography text={"editar"} type={"body"} />
-              </div>
+              <>
+                {!isEditing && (
+                  <div className={styles.list}>
+                    {allProducts.map((product, index) => (
+                      <ProductCard
+                        key={index}
+                        product={product}
+                        buttonText="EDITAR"
+                        onButtonClick={() => handleEditProduct(product)}
+                      />
+                    ))}
+                  </div>
+                )}
+                {isEditing && (
+                  <div className={styles.form}>
+                    <Input
+                      label={"Nombre del Producto"}
+                      value={productEdited.name}
+                      setValue={handleEditInputChange}
+                      placeholder={"Ingresar nombre del producto"}
+                      id={"name"}
+                    />
+                    <Input
+                      label={"Descripcion del Producto"}
+                      value={productEdited.description}
+                      setValue={handleEditInputChange}
+                      placeholder={"Ingresar nombre del producto"}
+                      id={"description"}
+                    />
+                    <Input
+                      label={"Descripcion completa del Producto"}
+                      value={productEdited.longDescription}
+                      setValue={handleEditInputChange}
+                      placeholder={"Ingresar nombre del producto"}
+                      id={"longDescription"}
+                      textArea
+                    />
+                    <Input
+                      label={"Propiedades del Producto"}
+                      value={productEdited.properties}
+                      setValue={handleEditInputChange}
+                      placeholder={"Ingresar nombre del producto"}
+                      id={"properties"}
+                    />
+                    <Input
+                      label={"Precio del Producto"}
+                      value={productEdited.price}
+                      setValue={handleEditInputChange}
+                      placeholder={"Ingresar nombre del producto"}
+                      id={"price"}
+                    />
+                    <Input
+                      label={"Stock del Producto"}
+                      value={productEdited.stock}
+                      setValue={handleEditInputChange}
+                      placeholder={"Ingresar nombre del producto"}
+                      id={"stock"}
+                    />
+                    <ImageInput selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
+                    <div className={styles.buttons}>
+                      <Button
+                        text={"CANCELAR"}
+                        type={"gold-s"}
+                        size={"small"}
+                        onClick={() => setIsEditing(false)}
+                      />
+                      <Button
+                        text={"GUARDAR PRODUCTO"}
+                        type={"gold"}
+                        size={"small"}
+                        disabled={isUploading}
+                        onClick={handleProductUpload}
+                      />
+                    </div>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>
@@ -154,6 +279,7 @@ const Dashboard = () => {
                 ...product,
                 imageUrl: selectedImage ? URL.createObjectURL(selectedImage) : placeholder,
               }}
+              buttonText={"VER DETALLES"}
             />
           </div>
         )}
