@@ -5,6 +5,7 @@ import "../styles/styles.scss";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "@/components/Navbar/Navbar";
+import { EdgeStoreProvider } from "../lib/edgestore";
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -20,14 +21,16 @@ function App({ Component, pageProps }: AppProps) {
         <title>OH - Organic Health</title>
       </Head>
 
-      <ToastContainer
-        position="top-left"
-        toastClassName={"info-alert"}
-        theme="dark"
-        className={"toast-text"}
-      />
-      <Navbar />
-      <Component {...pageProps} />
+      <EdgeStoreProvider>
+        <ToastContainer
+          position="top-left"
+          toastClassName={"info-alert"}
+          theme="dark"
+          className={"toast-text"}
+        />
+        <Navbar />
+        <Component {...pageProps} />
+      </EdgeStoreProvider>
     </React.Fragment>
   );
 }

@@ -6,14 +6,16 @@ import Typography from "@/components/Typography/Typography";
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
 import ProductCard, { IProduct } from "@/components/ProductCard/ProductCard";
-import axios from "axios";
+import axios, { formToJSON } from "axios";
 import { toast } from "react-toastify";
 import ImageInput from "@/components/ImageInput/ImageInput";
 import placeholder from "../../public/assets/image_placeholder.svg";
+import { useEdgeStore } from "../../lib/edgestore";
 const Dashboard = () => {
   const [selected, setSelected] = React.useState<number>(0);
   const [allProducts, setAllProducts] = useState<IProduct[]>([]);
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [file, setFile] = useState<File | null>(null);
+  const { edgestore } = useEdgeStore();
 
   const [product, setProduct] = React.useState<IProduct>({
     name: "",
@@ -61,14 +63,15 @@ const Dashboard = () => {
     }
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProduct({ ...product, imageUrl: reader.result as string });
-      };
-      reader.readAsDataURL(file);
+  const handleImageUpload = async () => {
+    if (file) {
+      try {
+        const res = await edgestore.publicImages.upload({ file });
+
+        console.log(res, "res");
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
@@ -92,11 +95,12 @@ const Dashboard = () => {
   const handleProductUpload = async () => {
     setIsUploading(true);
     try {
-      const response = await axios.post("http://localhost:5273/products", product);
+      handleImageUpload();
+      // const response = await axios.post("http://localhost:5273/products", product);
 
-      toast.success("Producto cargado correctamente");
-      getProducts();
-      console.log(response);
+      // toast.success("Producto cargado correctamente");
+      // getProducts();
+      // console.log(response);
     } catch (e) {
       console.log(e);
     } finally {
@@ -173,7 +177,7 @@ const Dashboard = () => {
                   placeholder={"Ingresar nombre del producto"}
                   id={"stock"}
                 />
-                <ImageInput selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
+                <ImageInput selectedImage={file} setSelectedImage={setFile} />
                 <div className={styles.buttons}>
                   <Button
                     text={"BORRAR FORMULARIO"}
@@ -250,7 +254,7 @@ const Dashboard = () => {
                       placeholder={"Ingresar nombre del producto"}
                       id={"stock"}
                     />
-                    <ImageInput selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
+                    <ImageInput selectedImage={file} setSelectedImage={setFile} />
                     <div className={styles.buttons}>
                       <Button
                         text={"CANCELAR"}
@@ -277,7 +281,7 @@ const Dashboard = () => {
             <ProductCard
               product={{
                 ...product,
-                imageUrl: selectedImage ? URL.createObjectURL(selectedImage) : placeholder,
+                imageUrl: file ? URL.createObjectURL(file) : placeholder,
               }}
               buttonText={"VER DETALLES"}
             />
